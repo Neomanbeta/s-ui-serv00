@@ -1,33 +1,37 @@
 # s-ui-serv00
 s-ui serv00 编译版
 
+简明使用说明
+
 面板先开两个tcp端口（88888,99999），一个udp端口（77777），配置完成后，在实现trojan+argo | Hysteria 2 | Tuic 三个协议的情况下，只占用一个udp端口，两个TCP端口会空出来。
 
-CF后台创建好两条通道，记下token备用，举例：通道1给面板使用，比如设置成s15sui.你的域名.us.kg内容是http://[::1]:88888 通道2给trojan+argo使用比如设置成s15tr.你的域名.us.kg内容是http://127.0.0.2:88888 备用
+CF后台创建好两条通道，记下token备用，举例：通道1给面板使用，比如设置成s15sui.你的域名.us.kg内容是`http://[::1]:88888` 通道2给trojan+argo使用比如设置成s15tr.你的域名.us.kg内容是`http://127.0.0.2:88888` 备用
 
 上传s-sui-freebsd-amd64-1.2.0-beta.2.zip到serv00解压，进入解压后的s-ui文件夹，chmod +x s-ui提权
 
-然后 wget https://cloudflared.bowring.uk/binaries/cloudflared-freebsd-2024.11.1.7z 下载argo到当前目录。
+然后 `wget https://cloudflared.bowring.uk/binaries/cloudflared-freebsd-2024.11.1.7z` 下载argo到当前目录。
 
 用你喜欢的命令把cloudflared-freebsd-2024.11.1.7z里面的argo二进制文件解压缩出来，并且改名成argo
 
-nohup ./argo tunnel --no-autoupdate run --token 你的token > /dev/null 2>&1 &  启动argo
+`nohup ./argo tunnel --no-autoupdate run --token 你的token > /dev/null 2>&1 &`  启动argo
 
-openssl ecparam -genkey -name prime256v1 -out private.key 回车
+`openssl ecparam -genkey -name prime256v1 -out private.key` 回车
 
-openssl req -new -x509 -days 36500 -key private.key -out cert.crt -subj "/CN=www.bing.com" 回车
+`openssl req -new -x509 -days 36500 -key private.key -out cert.crt -subj "/CN=www.bing.com"` 回车
 
 生成hy2需要使用的证书和密钥
 
+```
 ./s-ui setting -port 88888 -subPort 99999 启动面板
+```
 
-浏览器打开s15.serv00.com:88888登录面板，默认的用户名和密码是admin
+浏览器打开`s15.serv00.com:88888`登录面板，默认的用户名和密码是admin
 
 登录以后打开设置，修改 界面的地址为::1端口为88888  订阅的地址为127.0.0.1 端口为88888 然后点击保存，点击重启面板，这时候你就会打不开面板了。
 
-现在用浏览器打开https://s15sui.你的域名.us.kg/app/就又能打开面板了，登录，打开面板里的TLS设置，添加，起个名字，比如udp，SNI添www.bing.com，证书文件路径和私钥文件路径指向之前生成的两个问题件
+现在用浏览器打开`https://s15sui.你的域名.us.kg/app/`就又能打开面板了，登录，打开面板里的TLS设置，添加，起个名字，比如udp，SNI添www.bing.com，证书文件路径和私钥文件路径指向之前生成的两个问题件
 
-比如/home/你的用户名/s-ui/cert.crt和/home/你的用户名/s-ui/private.key
+比如`/home/你的用户名/s-ui/cert.crt`和`/home/你的用户名/s-ui/private.key`
 
 接下来s-ui必要的基础设置我就不赘述了，不会自己去看教程，看YouTube视频去学，我只说后面重要的。
 

@@ -5,7 +5,7 @@ s-ui serv00 编译版
 
 面板先开两个tcp端口，比如（88888,99999），一个udp端口，比如（77777），配置完成后，在实现trojan+argo | Hysteria 2 | Tuic 三个协议的情况下，只占用一个udp端口，两个TCP端口会空出来。
 
-CF后台创建好两条通道，记下token备用，举例：通道1给面板使用，比如设置成s15sui.你的域名.us.kg内容是`http://[::1]:88888` 通道2给trojan+argo使用比如设置成s15tr.你的域名.us.kg内容是`http://127.0.0.2:88888` 备用
+CF后台创建好两条通道，记下token备用，举例：通道1给面板使用，比如设置成`s15sui.你的域名.us.kg`内容是`http://[::1]:88888` 通道2给trojan+argo使用比如设置成`s15tr.你的域名.us.kg`内容是`http://127.0.0.2:88888` 备用
 
 上传s-sui-freebsd-amd64-1.2.0-beta.2.zip到serv00解压，进入解压后的s-ui文件夹，chmod +x s-ui提权
 

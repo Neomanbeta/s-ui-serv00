@@ -9,7 +9,7 @@ CF后台创建好两条通道，记下token备用，举例：通道1给面板使
 
 上传s-sui-freebsd-amd64-1.2.0-beta.2.zip到serv00解压，进入解压后的s-ui文件夹，chmod +x s-ui提权
 
-然后 `wget https://cloudflared.bowring.uk/binaries/cloudflared-freebsd-2024.11.1.7z` 下载argo到当前目录。
+然后 ```wget https://cloudflared.bowring.uk/binaries/cloudflared-freebsd-2024.11.1.7z``` 下载argo到当前目录。
 
 用你喜欢的命令把cloudflared-freebsd-2024.11.1.7z里面的argo二进制文件解压缩出来，并且改名成argo
 
